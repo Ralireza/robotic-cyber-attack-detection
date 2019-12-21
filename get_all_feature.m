@@ -1,4 +1,5 @@
 function [ wa,a1,a2,wa_test,a1_test,a2_test ] = get_all_feature()
+% initialize feature vectors
     wa_feature_train=zeros(1,11);
     wa_feature_test=zeros(1,11);
     
@@ -9,17 +10,17 @@ function [ wa,a1,a2,wa_test,a1_test,a2_test ] = get_all_feature()
     a2_feature_test=zeros(1,11);
 
     
-%     without attack features train
+%     without attack features train and label 0
     for i=1:8
         wa_feature_train=[wa_feature_train;extract_feature(strcat('./DATA/without-attack/WA_',int2str(i),'.bag'),0)];
     end
     
-%     attack 1 features train
+%     attack 1 features train and label 1
     for j=1:6
         a1_feature_train=[a1_feature_train;extract_feature(strcat('./DATA/attack-1/a1-',int2str(j),'.bag'),1)];
     end
     
-%     attack 2 features train
+%     attack 2 features train and label 2
     for z=1:3
         a2_feature_train=[a2_feature_train;extract_feature(strcat('./DATA/attack-2/a2-',int2str(z),'.bag'),2)];
     end
@@ -31,7 +32,7 @@ function [ wa,a1,a2,wa_test,a1_test,a2_test ] = get_all_feature()
         a2_feature_test=[a2_feature_test;extract_feature(strcat('./DATA/attack-2/A2-V-',int2str(k),'.bag'),2)];
   
     end
-    
+%     delete first row that contain zeros
     wa=wa_feature_train(2:end,:);
     a1=a1_feature_train(2:end,:);
     a2=a2_feature_train(2:end,:);
