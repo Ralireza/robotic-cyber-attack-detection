@@ -1,4 +1,5 @@
 function [ Mdl ] = classifier( X,Y,name)
+% train a model by name and return model of trained data
 switch name
     case "knn"
         Mdl = fitcknn(X,Y,'NumNeighbors',3,'Standardize',1);
